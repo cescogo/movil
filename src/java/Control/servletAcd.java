@@ -53,7 +53,9 @@ public class servletAcd extends HttpServlet {
                     location = "Admin.jsp";
                 }
                 if (t == 2) {
+                    request.setAttribute("Matri", usu);
                     location = "Matricula.jsp";
+                    
                 }
                 if (t == 3) {
                     nota(request, response);
@@ -86,6 +88,10 @@ public class servletAcd extends HttpServlet {
             case "VLVR":
                 
                 break;
+                
+            case "lados":
+                matriculados(request, response);
+                break;
             
         }
     }
@@ -94,14 +100,6 @@ public class servletAcd extends HttpServlet {
         ArrayList<Nota> l = new ArrayList<Nota>();
         String Alm = (String) request.getAttribute("Almn");
         gestor.ConsultaHistorial(Alm, l);
-
-//       ArrayList<String> l = new ArrayList<>();
-//       l.add("hola");
-//       l.add("hola2");
-//       l.add("hola3");
-//        //String Alm = (String)request.getAttribute("Almn");
-        //gestor.ConsultaHistorial(Alm, l);
-        //System.out.println(l.toString());
         request.setAttribute("historial", l);
     }
     
@@ -110,6 +108,14 @@ public class servletAcd extends HttpServlet {
         ArrayList<Grupo> l = new ArrayList<>();
         gestor.gruposProfe((String) request.getAttribute("usr"), l);
         request.setAttribute("GRPSPRF", l);
+    }
+    
+    private void matriculados(HttpServletRequest request, HttpServletResponse response)
+    {
+          ArrayList <Nota> l= new ArrayList<Nota>();
+                String est=request.getParameter("usuario");
+                gestor.matriculados(est, l);
+        request.setAttribute("matriculados", l);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
