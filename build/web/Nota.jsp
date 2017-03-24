@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,16 +21,12 @@
             <TR>
                 <TH> Curso </TH>
                 <TH> Grupo </TH>
-                <TH> Nota </TH>
-                <TH> Condicion</TH>
-            </TR>
+               </TR>
             <c:forEach var="Hist" items="${GRPSPRF}">
                 <tr>
-                <td> <c:out value="${Hist.CURSO}" /><p> </td>
-                <td> <c:out value="${Hist.grupo}" /><p> </td>
-                <td> <c:out value="${Hist.NOTA}" /><p> </td>
-                <td> <c:out value="${Hist.condision}" /><p> </td>
-                    </tr>
+                <td> <c:out value="${Hist.curso}" /><p> </td>
+                <td> <c:out value="${Hist.id}" /><p> </td>
+                </tr>
             </c:forEach>
         </table>
     </center>
