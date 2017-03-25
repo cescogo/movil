@@ -94,10 +94,38 @@ public class servletAcd extends HttpServlet {
             case "VLVR":
 
                 break;
+            case "agregaPer":
+                Persona ax = null;
+                switch ((String) getServletContext().getAttribute("tipAd")) {
+                    case "Alumno":
+                        ax = new Alumno(Integer.parseInt(request.getParameter("telefono")),(String)request.getParameter("correo"),(String)request.getParameter("nombre"),(String)request.getParameter("cedula"),(String)request.getParameter("F_nac"),(String)request.getParameter("clave"),(String)request.getParameter("carrera"));
+                        break;
+                    case "Profesor":
+                        ax = new Profesor(Integer.parseInt(request.getParameter("telefono")),(String)request.getParameter("correo"),(String)request.getParameter("nombre"),(String)request.getParameter("cedula"),(String)request.getParameter("clave"));
+                        break;
+                    case "Administrador":
+                        ax = new Administrador(Integer.parseInt(request.getParameter("telefono")),(String)request.getParameter("correo"),(String)request.getParameter("nombre"),(String)request.getParameter("cedula"),(String)request.getParameter("clave"));
+                        break;
+                    case "Matriculador":
+                        ax = new Matriculador(Integer.parseInt(request.getParameter("telefono")),(String)request.getParameter("correo"),(String)request.getParameter("nombre"),(String)request.getParameter("cedula"),(String)request.getParameter("clave"));
+                        break;
+                    default:
+                        break;
+                }
+                if(((String)request.getParameter("intslt")).equals("2"))
+                    gestor.actualizaP(ax);
+                else gestor.agregarP(ax);
+                request.setAttribute("act", "0");
+                 request.getRequestDispatcher("AdPersona.jsp").forward(request, response);
+                break;
+                
             case "wtact":
                 String a = (String) request.getParameter("sltAdmin");
                 switch (a) {
                     case "agregar":
+                        ArrayList<Persona> l = new ArrayList();
+                        l.add(new Alumno());
+                        request.setAttribute("Personas", l);
                         request.setAttribute("act", "1");
                         break;
                     case "actualizar":
@@ -145,10 +173,10 @@ public class servletAcd extends HttpServlet {
                 break;
             case "busqADmin":
                 String prs = (String) request.getParameter("busqueda");
-                Persona aux = new Persona(0);
-                request.setAttribute("act", "0");
-                String tad = (String) getServletContext().getAttribute("tipAd");
-                switch (tad) {
+                Persona aux = new Persona(0, "indefinido", "indefinido", "indefinido", 0, "indefinido");
+                String tip = (String) request.getParameter("intslt");
+                request.setAttribute("act", tip);
+                switch ((String) getServletContext().getAttribute("tipAd")) {
                     case "Alumno":
                         aux = new Alumno();
                         break;
@@ -164,7 +192,7 @@ public class servletAcd extends HttpServlet {
                     default:
                         break;
                 }
-                switch ((String) request.getParameter("intslt")) {
+                switch (tip) {
                     case "2":
                     case "4":
                         gestor.buscarPer(aux, prs);
@@ -184,7 +212,7 @@ public class servletAcd extends HttpServlet {
                             request.getRequestDispatcher("AdPersona.jsp").forward(request, response);
                         } else {
                             ArrayList<Profesor> ll = new ArrayList<>();
-                            gestor.mostrarProNom(tad, ll);
+                            gestor.mostrarProNom(prs, ll);
                             request.setAttribute("Personas", ll);
                             request.getRequestDispatcher("AdPersona.jsp").forward(request, response);
                         }
@@ -193,10 +221,12 @@ public class servletAcd extends HttpServlet {
                         ArrayList<Alumno> l = new ArrayList<>();
                         gestor.mostrarPCar(prs, l);
                         request.setAttribute("Personas", l);
+                        request.getRequestDispatcher("AdPersona.jsp").forward(request, response);
                         break;
                     default:
 
                         request.setAttribute("Personas", aux);
+                        request.getRequestDispatcher("AdPersona.jsp").forward(request, response);
                         break;
 
                 }

@@ -23,6 +23,7 @@ Author     : Francisco
         <div>
             <form id="wtact" method="post" action="/movil/servletAcd?WTRD=wtact">
                 <select name="sltAdmin" form="wtact" onchange="this.form.submit()">
+                    <option value="noda">___</option>
                     <option value="agregar">agregar</option>
                     <option value="actualizar">actualizar</option>
                     <option value="eliminar">eliminar</option>
@@ -36,7 +37,7 @@ Author     : Francisco
                 </select>
             </form>
         </div>
-        <c:if test="<%= !tip.equals("0") && !tip.equals("1") %>" >
+        <c:if test="<%= !tip.equals("0") && !tip.equals("1")%>" >
             <div>
                 <form method="post" action="/movil/servletAcd?WTRD=busqADmin&intslt=<%= tip%>">
                     Ingrese el dato de<%= tad%>:
@@ -46,41 +47,51 @@ Author     : Francisco
             </div>
         </c:if>
 
-        <c:forEach var="Hist" items="${Personas}">            
-            <table>
-                <tr>
-                    <td>Identificacion</td>
-                    <td><input type="text" size="20" name="id" value="<c:out value="${Hist.cedula}" />"></td>
-                </tr>
+        <c:forEach var="Hist" items="${Personas}">        
 
-                <tr>
-                    <td>Nombre:</td>
-                    <td><input type="text" size="20" name="nombre" value="<c:out value="${Hist.nombre}" />"></td>
-                </tr>
-                <tr>
-                    <td>Telefono</td>
-                    <td><input type="text" size="20" name="clave" value="<c:out value="${Hist.telefono}" />"></td>
-                </tr>
-                <tr>
-                    <td>Correo:</td>
-                    <td><input type="text" size="20" name="correo" value="<c:out value="${Hist.email}" />"></td>
-                </tr>
-                <tr>
-                    <td>Contraseña:</td>
-                    <td><input type="text" size="20" name="clave" value="<c:out value="${Hist.clave}" />"></td>
-                </tr>
-                <c:if test="<%= tad.equals("Alumno")%>" >
+            <form method="post" action="/movil/servletAcd?WTRD=agregaPer&intslt=<%= tip%>">
+                <table>
                     <tr>
-                        <td>Fecha de Nacimiento</td>
-                        <td><input type="text" size="20" name="F_nac" value="<c:out value="${Hist.getF_nac()}" />"></td>
+                        <td>Identificacion</td>
+                        <td><input type="text" size="20" name="cedula" value="<c:out value="${Hist.cedula}" />" <%= (tip.equals("1")) ? " " : "readonly"%>></td>
+                    </tr>
+
+                    <tr>
+                        <td>Nombre:</td>
+                        <td><input type="text" size="20" name="nombre" value="<c:out value="${Hist.nombre}" />" <%= (tip.equals("1")||tip.equals("2")) ? " " : "readonly"%>></td>
                     </tr>
                     <tr>
-                        <td>Carrera</td>
-                        <td><input type="text" size="20" name="carrera" value="<c:out value="${Hist.getCarrera()}" />"></td>
+                        <td>Telefono</td>
+                        <td><input type="text" size="20" name="telefono" value="<c:out value="${Hist.telefono}" />" <%= (tip.equals("1")||tip.equals("2")) ? " " : "readonly"%>></td>
                     </tr>
+                    <tr>
+                        <td>Correo:</td>
+                        <td><input type="text" size="20" name="correo" value="<c:out value="${Hist.email}" />" <%= (tip.equals("1")||tip.equals("2")) ? " " : "readonly"%>></td>
+                    </tr>
+                    <tr>
+                        <td>Contraseña:</td>
+                        <td><input type="text" size="20" name="clave" value="<c:out value="${Hist.clave}" />" <%= (tip.equals("1")||tip.equals("2")) ? " " : "readonly"%>></td>
+                    </tr>
+                    <c:if test="<%= tad.equals("Alumno")%>" >
+                        <tr>
+                            <td>Fecha de Nacimiento</td>
+                            <td><input type="text" size="20" name="F_nac" value="<c:out value="${Hist.getF_nac()}" />" <%= (tip.equals("1")) ? " " : "readonly"%>></td>
+                        </tr>
+                        <tr>
+                            <td>Carrera</td>
+                            <td><input type="text" size="20" name="carrera" value="<c:out value="${Hist.getCarrera()}" />" <%= (tip.equals("1")) ? " " : "readonly"%>></td>
+                        </tr>
+                    </c:if>
+                    <br><hr>
+                </table> 
+                <c:if test="<%= tip.equals("1")%>" >
+                    <input type="submit" name="add" value="agregar"/>
                 </c:if>
-
-            </table> 
+                <c:if test="<%= tip.equals("2")%>" >
+                    <input type="submit" name="act" value="actualizar"/>
+                </c:if>
+                <br><hr>
+            </form>
         </c:forEach>
 
         <a href="Admin.jsp" id="atras">atras</a>
