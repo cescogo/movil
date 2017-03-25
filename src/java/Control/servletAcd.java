@@ -193,6 +193,11 @@ public class servletAcd extends HttpServlet {
                         break;
                 }
                 switch (tip) {
+                    case "3":
+                        gestor.borrarP(prs);
+                        request.getRequestDispatcher("AdPersona.jsp").forward(request, response);
+                       
+                        break;
                     case "2":
                     case "4":
                         gestor.buscarPer(aux, prs);

@@ -13,10 +13,10 @@ Author     : Francisco
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body><center>
-
         <% String tad = (String) application.getAttribute("tipAd");%>
         <% String tip = (String) request.getAttribute("act");%>
+    <body ><center>
+
 
         <h1>Administracion de <%= tad%></h1>
 
