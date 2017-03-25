@@ -25,6 +25,7 @@ public class servletAcd extends HttpServlet {
     
     private Control gestor;
     private int t;
+    private String usu;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +44,7 @@ public class servletAcd extends HttpServlet {
         
         switch (request.getParameter("WTRD")) {
             case "login":
-                String usu = (String) request.getParameter("usuario");
+                 usu = (String) request.getParameter("usuario");
                 String pass = (String) request.getParameter("clave");
                 t = gestor.verificaUsuario(usu, pass);
                 gestor.verificaUsuario(usu, pass);
@@ -90,7 +91,9 @@ public class servletAcd extends HttpServlet {
                 break;
                 
             case "lados":
+                request.setAttribute("Matri", usu);
                 matriculados(request, response);
+                request.getRequestDispatcher("Matricula.jsp").forward(request, response);
                 break;
             
         }
