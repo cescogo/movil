@@ -58,6 +58,7 @@ public class servletAcd extends HttpServlet {
 //                request.getSession().setAttribute("usr", usu);
 //                request.setAttribute("usr", usu);
                 if (t == 1) {
+                    request.setAttribute("shE","20");
                     location = "Admin.jsp";
                 }
                 if (t == 2) {
@@ -86,6 +87,15 @@ public class servletAcd extends HttpServlet {
                     out.println("</center></body></html>");
                 }
                 break;
+            case "CHis":
+                if(request.getParameter("idhist") == null ){
+                    request.setAttribute("shE", "2");
+                    request.getRequestDispatcher("Admin.jsp").forward(request, response);
+                    break;
+                }
+                else 
+                    request.setAttribute("Almn", request.getParameter("idhist"));
+                
             case "historial":
                 //request.setAttribute("Almn",request.getParameter("Almn"));
                 historial(request, response);
