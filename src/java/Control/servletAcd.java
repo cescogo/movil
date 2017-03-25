@@ -45,10 +45,10 @@ public class servletAcd extends HttpServlet {
         gestor = new Control();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        String usu;
         switch (request.getParameter("WTRD")) {
             case "login":
-                String usu = (String) request.getParameter("usuario");
+                 usu = (String) request.getParameter("usuario");
                 String pass = (String) request.getParameter("clave");
                 t = gestor.verificaUsuario(usu, pass);
                 gestor.verificaUsuario(usu, pass);
@@ -60,6 +60,7 @@ public class servletAcd extends HttpServlet {
                     location = "Admin.jsp";
                 }
                 if (t == 2) {
+                    request.setAttribute("Matri", usu);
                     location = "Matricula.jsp";
                 }
                 if (t == 3) {

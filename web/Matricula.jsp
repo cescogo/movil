@@ -12,6 +12,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello matriculador!</h1>
-    </body>
+    <center>          
+        <% String a = (String) request.getAttribute("Matri");%> 
+        <h1>Matriculador <%= a%></h1>
+        <table border="1">
+            <TR>
+                <TH> Curso </TH>
+                <TH> Grupo </TH>
+                <TH> Nota </TH>
+                <TH> Condicion</TH>
+            </TR>
+            <c:forEach var="Hist" items="${historial}">
+                <tr>
+                    <td> <c:out value="${Hist.CURSO}" /><p> </td>
+                    <td> <c:out value="${Hist.grupo}" /><p> </td>
+                    <td> <c:out value="${Hist.NOTA}" /><p> </td>
+                    <td> <c:out value="${Hist.condision}" /><p> </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </center>
+</body>
 </html>
