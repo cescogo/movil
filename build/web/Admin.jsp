@@ -12,7 +12,7 @@
         <title>Administradir</title>
     </head>
     <body><center>
-
+slñdfldfsk
         <% String a = (String) application.getAttribute("usr");%>
         
         <h1>Administrador <%= a%></h1>
