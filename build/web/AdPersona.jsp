@@ -38,7 +38,7 @@ Author     : Francisco
         </div>
         <c:if test="<%= !tip.equals("0") && !tip.equals("1") %>" >
             <div>
-                <form method="post" action="/movil/servletAcd?WTRD=busqADmin?">
+                <form method="post" action="/movil/servletAcd?WTRD=busqADmin&intslt=<%= tip%>">
                     Ingrese el dato de<%= tad%>:
                     <input type="search" name="busqueda" size="20">
                     <input type="submit" name="busquesb" />
@@ -46,7 +46,7 @@ Author     : Francisco
             </div>
         </c:if>
 
-        <c:forEach var="pers" items="${Personas}">            
+        <c:forEach var="Hist" items="${Personas}">            
             <table>
                 <tr>
                     <td>Identificacion</td>
@@ -72,11 +72,11 @@ Author     : Francisco
                 <c:if test="<%= tad.equals("Alumno")%>" >
                     <tr>
                         <td>Fecha de Nacimiento</td>
-                        <td><input type="text" size="20" name="F_nac" value="<c:out value="${Hist.F_nac}" />"></td>
+                        <td><input type="text" size="20" name="F_nac" value="<c:out value="${Hist.getF_nac()}" />"></td>
                     </tr>
                     <tr>
                         <td>Carrera</td>
-                        <td><input type="text" size="20" name="carrera" value="<c:out value="${Hist.carrera}" />"></td>
+                        <td><input type="text" size="20" name="carrera" value="<c:out value="${Hist.getCarrera()}" />"></td>
                     </tr>
                 </c:if>
 
