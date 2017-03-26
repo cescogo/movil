@@ -280,7 +280,8 @@ public class servletAcd extends HttpServlet {
     {
         ArrayList<Nota> l = new ArrayList<Nota>();
         gestor.matriculados(ced, l);
-        request.setAttribute("matriculados", l);        
+        request.setAttribute("matriculados", l); 
+        request.setAttribute("style", "visible");
     }
     
 
