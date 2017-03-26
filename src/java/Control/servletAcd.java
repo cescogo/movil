@@ -30,7 +30,7 @@ import org.jvnet.staxex.util.FinalArrayList;
 public class servletAcd extends HttpServlet {
 
     private Control gestor;
-    private int t;
+    private int t;//tipo usuario
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,22 +46,24 @@ public class servletAcd extends HttpServlet {
         gestor = new Control();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+       
+//        
         switch (request.getParameter("WTRD")) {
+            //login
             case "login":
                 String usu = (String) request.getParameter("usuario");
                 String pass = (String) request.getParameter("clave");
-                t = gestor.verificaUsuario(usu, pass);
+                t = gestor.verificaUsuario(usu, pass); // tipo de usuario
                 gestor.verificaUsuario(usu, pass);
                 String location = "";
                 getServletContext().setAttribute("usr", usu);
-//                request.getSession().setAttribute("usr", usu);
-//                request.setAttribute("usr", usu);
+               
                 if (t == 1) {
                     request.setAttribute("shE","20");
                     location = "Admin.jsp";
                 }
                 if (t == 2) {
+                    request.setAttribute("Matri", usu);
                     location = "Matricula.jsp";
                 }
                 if (t == 3) {
@@ -87,6 +89,8 @@ public class servletAcd extends HttpServlet {
                     out.println("</center></body></html>");
                 }
                 break;
+                
+                //historial alumno administrador
             case "CHis":
                 if(request.getParameter("idhist") == null ){
                     request.setAttribute("shE", "2");
@@ -97,7 +101,6 @@ public class servletAcd extends HttpServlet {
                     request.setAttribute("Almn", request.getParameter("idhist"));
                 
             case "historial":
-                //request.setAttribute("Almn",request.getParameter("Almn"));
                 historial(request, response);
                 request.getRequestDispatcher("Historial.jsp").forward(request, response);
                 break;
@@ -255,23 +258,37 @@ public class servletAcd extends HttpServlet {
             case "actualizaN":
                 gestor.actualiza(new Nota(Float.parseFloat(request.getParameter("nota")),
                         "curso", request.getParameter("Est"), request.getParameter("grp"), "condiion"));
-            //request.getRequestDispatcher("Nota.jsp").forward(request, response);
-            //break;
+            
             case "notas":
                 notasGrp(request, response);
                 request.getRequestDispatcher("Nota.jsp").forward(request, response);
+                break;         
+                
+            //muestra detalle estudiante matricula
+            case "MDEM":
+                String ced= (String)request.getParameter("usuario");
+                 matriculados(request, response,ced);
+                request.getRequestDispatcher("Matricula.jsp").forward(request, response);
                 break;
             default:
                 break;
 
         }
     }
+    
+    private void matriculados(HttpServletRequest request, HttpServletResponse response,String ced)
+    {
+        ArrayList<Nota> l = new ArrayList<Nota>();
+        gestor.matriculados(ced, l);
+        request.setAttribute("matriculados", l);
+    }
+    
 
     private void notasGrp(HttpServletRequest request, HttpServletResponse response) {
         ArrayList<Nota> l = new ArrayList<>();
         String cdogrp = "" + request.getParameter("grp");
         gestor.notasPgrupo(cdogrp, l);
-        // request.setAttribute("cdogrp", cdogrp);
+        
         request.setAttribute("notas", l);
         request.setAttribute("style", "block");
 
@@ -282,14 +299,7 @@ public class servletAcd extends HttpServlet {
         String Alm = (String) request.getAttribute("Almn");
         gestor.ConsultaHistorial(Alm, l);
 
-//       ArrayList<String> l = new ArrayList<>();
-//       l.add("hola");
-//       l.add("hola2");
-//       l.add("hola3");
-//        //String Alm = (String)request.getAttribute("Almn");
-        //gestor.ConsultaHistorial(Alm, l);
-        //System.out.println(l.toString());
-        request.setAttribute("historial", l);
+       request.setAttribute("historial", l);
     }
 
     private void nota(HttpServletRequest request, HttpServletResponse response) {
