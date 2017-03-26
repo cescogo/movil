@@ -4,7 +4,9 @@
     Author     : Francisco
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,16 +24,16 @@
         </form>	
         <table border="1">
             <TR>
-                <TH> Nombre Curso </TH>
+              <!--  <TH> Nombre Curso </TH> -->
                 <TH> Codigo Curso </TH>
                 <TH> grupo </TH>
                 
             </TR>
-            <c:forEach var="mat" items="${matriculados}">
+            <c:forEach var="Hist" items="${matriculados}">
                 <tr>
-                    <td> <c:out value=" " /><p> </td>
-                    <td> <c:out value="${mat.CURSO}" /><p> </td>
-                    <td> <c:out value="${mat.grupo}" /><p> </td>
+                  <!-- <td> <c:out value=" " /><p> </td> -->
+                    <td> <c:out value="${Hist.CURSO}" /><p> </td>
+                    <td> <c:out value="${Hist.grupo}" /><p> </td>
                    
                 </tr>
             </c:forEach>
