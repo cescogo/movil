@@ -21,7 +21,7 @@
         <% String a = (String)application.getAttribute("usr");%>
                 <% String s = ((String)request.getAttribute("style"));%>
         <h1>Profesor <%= a%></h1>
-        <table id="tb1" style="display:<%= (s != null)?"none":"block" %> ">
+        <table id="tb1" style="display:<%= (s != null)?"none":"block" %> " border="1">
             <TR>
                 <TH> Curso </TH>
                 <TH> Grupo </TH>
@@ -30,13 +30,12 @@
                 <tr>
                     <td> <c:out value="${Hist.curso}" /><p> </td>
                     <td><a href='/movil/servletAcd?WTRD=notas&grp=${Hist.id}'/><c:out value="${Hist.id}" /></td>  
-
-                    <td> <c:out value="${Hist.id}" /><p> </td>
+ 
                 </tr>
             </c:forEach>
         </table>
 
-        <table id="tb2" style="display:<%= (s != null)?s:"none" %> ">
+        <table id="tb2" style="display:<%= (s != null)?s:"none" %> " border="1">
             <TR><TH> Estudiante </TH><TH> Nota </TH></TR>
 
             <c:forEach var="Hist" items="${notas}">
