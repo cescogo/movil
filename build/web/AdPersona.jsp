@@ -21,7 +21,7 @@ Author     : Francisco
         <h1>Administracion de <%= tad%></h1>
 
         <div>
-            <form id="wtact" method="post" action="/movil/servletAcd?WTRD=wtact">
+            <form id="wtact" method="post" action="/movil/servletAcd?WTRD=wtact&CJA=P">
                 <select name="sltAdmin" form="wtact" onchange="this.form.submit()">
                     <option value="noda">___</option>
                     <option value="agregar">agregar</option>

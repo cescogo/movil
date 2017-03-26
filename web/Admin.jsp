@@ -13,7 +13,7 @@
         <title>Administradir</title>
     </head>
     <body><center>
-        <% int shE = Integer.parseInt((String)request.getAttribute("shE"));%>
+        <% int shE = Integer.parseInt((String)application.getAttribute("shE"));%>
         <% String a = (String)application.getAttribute("usr");%>
       
         <h1>Administrador <%= a%></h1>
@@ -22,15 +22,15 @@
             
             <div style="float: start">
                 <ul>
-                    <li> <a href="/movil/servletAcd?WTRD=admin" >Admisntrar Carreras</a> </li>
-                    <li> <a href="/movil/servletAcd?WTRD=nota" >Admisntrar cursos</a> </li>
+                    <li> <a href="/movil/servletAcd?WTRD=adCar" >Admisntrar Carreras</a> </li>
+                    <li> <a href="/movil/servletAcd?WTRD=adCur" >Admisntrar cursos</a> </li>
                     <li> <a href="/movil/servletAcd?WTRD=adPrf" >Admisntrar profesores</a> </li>
                     <li> <a href="/movil/servletAcd?WTRD=adAlm" >Admisntrar Alumnos</a> </li>
                     <li> <a href="/movil/servletAcd?WTRD=adDmn" >Admisntrar Administrador</a> </li>
                     <li> <a href="/movil/servletAcd?WTRD=adMtr" >Admisntrar Matriculador</a> </li>
                     <li> <a href="/movil/servletAcd?WTRD=nota" >Admisntrar Ciclo</a> </li>
-                    <li> <a href="/movil/servletAcd?WTRD=nota" >Admisntrar Oferta Academica</a> </li>
-                    <li> <a href="/movil/servletAcd?WTRD=nota" >Admisntrar Matricula</a> </li>
+                    <li> <a href="/movil/servletAcd?WTRD=OFRT" >Admisntrar Oferta Academica</a> </li>
+                    <li> <a href="Matricula.jsp" >Admisntrar Matricula</a> </li>
                     <li> <a href="/movil/servletAcd?WTRD=CHis" >Admisntrar Consultar Historial</a> </li>
                 </ul>
             </div>
