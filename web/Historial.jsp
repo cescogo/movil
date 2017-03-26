@@ -12,10 +12,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+         <form method="post" action="/movil/servletAcd?WTRD=lgout">
+            <input type="submit" value="salir" style="float: right">
+        </form>
     </head>
     <body>
     <center>          
         <% String a = (String) request.getAttribute("Almn");%> 
+        <% String tusr = (String) application.getAttribute("TUSR");%> 
+        
         <h1>Estudiante <%= a%></h1>
         <table border="1">
             <TR>
@@ -33,6 +38,9 @@
                 </tr>
             </c:forEach>
         </table>
+                <c:if test="<%= tusr.equals("1")%>" >
+                 <a href="/movil/servletAcd?WTRD=VLVR" id="atras">administrador </a>
+                </c:if>
     </center>
 </body>
 </html>

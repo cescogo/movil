@@ -50,6 +50,11 @@ public class servletAcd extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         switch (request.getParameter("WTRD")) {
+            case "lgout":
+                 getServletContext().removeAttribute("usr");
+                 getServletContext().setAttribute("usr", null);
+                 request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
             case "login":
                 String usu = (String) request.getParameter("usuario");
                 String pass = (String) request.getParameter("clave");
@@ -77,7 +82,7 @@ public class servletAcd extends HttpServlet {
                 }
                 response.setContentType("text/html");
                 if (!location.isEmpty()) {
-                    request.setAttribute("TUSR", t);
+                     getServletContext().setAttribute("TUSR", ""+t);
                     request.getRequestDispatcher(location).forward(request, response);
                     //response.sendRedirect(location);
                 } else {
@@ -104,6 +109,8 @@ public class servletAcd extends HttpServlet {
                 request.getRequestDispatcher("Historial.jsp").forward(request, response);
                 break;
             case "VLVR":
+                getServletContext().setAttribute("shE", "20");
+                request.getRequestDispatcher("Admin.jsp").forward(request, response);
 
                 break;
             case "agregaPer":

@@ -12,6 +12,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+         <form method="post" action="/movil/servletAcd?WTRD=lgout">
+            <input type="submit" value="salir" style="float: right">
+        </form>
     </head>
     <body>
     <center>          

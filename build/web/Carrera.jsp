@@ -15,6 +15,9 @@ Author     : Francisco
     </head>
         <% String tad = (String) application.getAttribute("tipAd");%>
         <% String tip = (String) request.getAttribute("act");%>
+         <form method="post" action="/movil/servletAcd?WTRD=lgout">
+            <input type="submit" value="salir" style="float: right">
+        </form>
     <body ><center>
 
 

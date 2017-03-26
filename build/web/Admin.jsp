@@ -15,7 +15,9 @@
     <body><center>
         <% int shE = Integer.parseInt((String)application.getAttribute("shE"));%>
         <% String a = (String)application.getAttribute("usr");%>
-      
+        <form method="post" action="/movil/servletAcd?WTRD=lgout">
+            <input type="submit" value="salir" style="float: right">
+        </form>
         <h1>Administrador <%= a%></h1>
 
         <c:if test="${shE >= 20}">
@@ -44,8 +46,8 @@
                     <input type="text" name="idhist" size="12"/>
                     <input type="submit" name="add" value="agregar"/>
                     </form>
-
             </div>
+               <a href="/movil/servletAcd?WTRD=VLVR" id="atras">administrador </a>
         </c:if>
     </center>
 </body>

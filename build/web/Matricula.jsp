@@ -13,12 +13,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+         <form method="post" action="/movil/servletAcd?WTRD=lgout">
+            <input type="submit" value="salir" style="float: right">
+        </form>
     </head>
     <body>
     <center>          
         <% String a = (String)application.getAttribute("usr");%> 
         <% String s = ((String)request.getAttribute("style"));%>
          <% String ced = ((String)request.getAttribute("ced"));%>
+          <% String tusr = (String) application.getAttribute("TUSR");%> 
         <h1>Matriculador <%= a%></h1>
         <form  method="post" action="/movil/servletAcd?WTRD=MDEM">
             Ingrese cedula del estudiante:
@@ -49,6 +53,9 @@
                 </tr>
             </c:forEach>
         </table>
+             <c:if test="<%= tusr.equals("1")%>" >
+                 <a href="/movil/servletAcd?WTRD=VLVR" id="atras">administrador </a>
+                </c:if>
     </center>
 </body>
 </html>
