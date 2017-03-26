@@ -267,8 +267,8 @@ public class servletAcd extends HttpServlet {
             //muestra detalle estudiante matricula
             case "MDEM":
                 String ced= (String)request.getParameter("usuario");
-                request.setAttribute("ced",ced);
-                 matriculados(request, response);
+                //request.setAttribute("ced",ced);
+                 matriculados(request, response,ced);
                 request.getRequestDispatcher("Matricula.jsp").forward(request, response);
                 break;
             case "desmatri":
@@ -287,20 +287,23 @@ public class servletAcd extends HttpServlet {
         }
     }
     
-    private void matriculados(HttpServletRequest request, HttpServletResponse response)
+    private void matriculados(HttpServletRequest request, HttpServletResponse response,String ced)
     {
         ArrayList<Nota> l = new ArrayList<Nota>();
         gestor.matriculados(""+request.getParameter("usuario"), l);
         request.setAttribute("matriculados", l); 
         request.setAttribute("style", "visible");
-       
+       request.setAttribute("ced",ced);
         
     }
     private void matricular(HttpServletRequest request, HttpServletResponse response)
     {
-        Nota not= new Nota(0,""+request.getParameter("curso"),""+request.getParameter("usuario") ,""+request.getParameter("grupo"), "encurso");
+       String ced=""+request.getParameter("usuario");
+       
+        Nota not= new Nota(0,""+request.getParameter("curso"),ced ,""+request.getParameter("grupo"), "encurso");
         gestor.Matricular(not);
         request.setAttribute("style", "visible");
+        matriculados(request,response,ced);
        
         
     }
@@ -310,7 +313,7 @@ public class servletAcd extends HttpServlet {
         String cur= ""+request.getParameter("cur");
         gestor.desmatricula(ced, cur);
         request.setAttribute("style", "visible");
-        
+        matriculados(request,response,ced);
        
     }
     
