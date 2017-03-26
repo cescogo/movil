@@ -299,8 +299,8 @@ public class servletAcd extends HttpServlet {
     private void matricular(HttpServletRequest request, HttpServletResponse response)
     {
        String ced=""+request.getParameter("usuario");
-       
-        Nota not= new Nota(0,""+request.getParameter("curso"),ced ,""+request.getParameter("grupo"), "encurso");
+       String lol = request.getParameter("curso")+"-"+request.getParameter("grupo");
+        Nota not= new Nota(0,""+request.getParameter("curso"),ced ,lol, "encurso");
         gestor.Matricular(not);
         request.setAttribute("style", "visible");
         matriculados(request,response,ced);
