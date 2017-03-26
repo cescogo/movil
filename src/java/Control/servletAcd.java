@@ -309,7 +309,7 @@ public class servletAcd extends HttpServlet {
     }
     private void desmatricular(HttpServletRequest request, HttpServletResponse response)
     {
-        String ced=""+request.getParameter("estu");
+        String ced=""+request.getParameter("usuario");
         String cur= ""+request.getParameter("cur");
         gestor.desmatricula(ced, cur);
         request.setAttribute("style", "visible");

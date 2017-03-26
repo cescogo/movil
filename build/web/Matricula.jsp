@@ -44,7 +44,7 @@
                 <tr>
               
                     <td> <c:out value="${Hist.CURSO}" /><p> </td>
-                    <td><a href='/movil/servletAcd?WTRD=desmatri&estu=${Hist.ESTUDIANTE}&cur=${Hist.CURSO} '/><c:out value="${Hist.grupo}" /></td>  
+                    <td><a href='/movil/servletAcd?WTRD=desmatri&usuario=${Hist.ESTUDIANTE}&cur=${Hist.CURSO} '/><c:out value="${Hist.grupo}" /></td>  
                    
                 </tr>
             </c:forEach>
