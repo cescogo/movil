@@ -267,7 +267,18 @@ public class servletAcd extends HttpServlet {
             //muestra detalle estudiante matricula
             case "MDEM":
                 String ced= (String)request.getParameter("usuario");
-                 matriculados(request, response,ced);
+                request.setAttribute("ced",ced);
+                 matriculados(request, response);
+                request.getRequestDispatcher("Matricula.jsp").forward(request, response);
+                break;
+            case "desmatri":
+                desmatricular( request, response);
+                 request.getRequestDispatcher("Matricula.jsp").forward(request, response);
+                break;
+                
+            case "matricula":
+                 
+                 matricular(request, response);
                 request.getRequestDispatcher("Matricula.jsp").forward(request, response);
                 break;
             default:
@@ -276,12 +287,31 @@ public class servletAcd extends HttpServlet {
         }
     }
     
-    private void matriculados(HttpServletRequest request, HttpServletResponse response,String ced)
+    private void matriculados(HttpServletRequest request, HttpServletResponse response)
     {
         ArrayList<Nota> l = new ArrayList<Nota>();
-        gestor.matriculados(ced, l);
+        gestor.matriculados(""+request.getParameter("usuario"), l);
         request.setAttribute("matriculados", l); 
         request.setAttribute("style", "visible");
+       
+        
+    }
+    private void matricular(HttpServletRequest request, HttpServletResponse response)
+    {
+        Nota not= new Nota(0,""+request.getParameter("curso"),""+request.getParameter("usuario") ,""+request.getParameter("grupo"), "encurso");
+        gestor.Matricular(not);
+        request.setAttribute("style", "visible");
+       
+        
+    }
+    private void desmatricular(HttpServletRequest request, HttpServletResponse response)
+    {
+        String ced=""+request.getParameter("estu");
+        String cur= ""+request.getParameter("cur");
+        gestor.desmatricula(ced, cur);
+        request.setAttribute("style", "visible");
+        
+       
     }
     
 

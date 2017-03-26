@@ -18,7 +18,7 @@
         <% String a = (String)application.getAttribute("usr");%>
                 <% String s = ((String)request.getAttribute("style"));%>
         <h1>Profesor <%= a%></h1>
-        <table id="tb1" style="display:<%= (s != null)?"none":"block" %> ">
+        <table id="tb1" border="1" style="display:<%= (s != null)?"none":"block" %> ">
             <TR>
                 <TH> Curso </TH>
                 <TH> Grupo </TH>
@@ -26,9 +26,8 @@
             <c:forEach var="Hist" items="${GRPSPRF}">
                 <tr>
                     <td> <c:out value="${Hist.curso}" /><p> </td>
-                    <td><a href='/movil/servletAcd?WTRD=notas&grp=${Hist.id}'/><c:out value="${Hist.id}" /></td>  
+                    <td><a href='/movil/servletAcd?WTRD=notas&grp=${Hist.id}'/><c:out value="${Hist.numero}" /></td>  
 
-                    <td> <c:out value="${Hist.id}" /><p> </td>
                 </tr>
             </c:forEach>
         </table>
