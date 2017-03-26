@@ -22,11 +22,11 @@
         <h1>Matriculador <%= a%></h1>
         <form  method="post" action="/movil/servletAcd?WTRD=MDEM">
             Ingrese cedula del estudiante:
-            <input type="text" name="usuario" size="20" value = "<%= (ced==null)? "":ced %> " >            
+            <input type="text" name="usuario" size="20" value = "<%= (ced==null)?"":ced %>" >            
             <input type="submit" value="aceptar">
            
         </form><br>	
-          <form method="post" action="/movil/servletAcd?WTRD=matricula" style="visibility :<%= (s != "visible")?"hidden":"visible" %> ">
+          <form method="post" action="/movil/servletAcd?WTRD=matricula&usuario=${ced}" style="visibility :<%= (s != "visible")?"hidden":"visible" %> ">
                 Ingrese curso del grupo a matricular :
                 <input type="text" name="curso" size="20"><br> <br>        
                Ingrese numero del grupo a matricular :
