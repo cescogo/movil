@@ -389,25 +389,37 @@ public class servletAcd extends HttpServlet {
                 break;
             case "MoAGrp":
                 String gru = (String) request.getParameter("grp");
+                String CRRS = (String) request.getParameter("CRSS");
                 Grupo p = new Grupo();
                 gestor.Buscar(p, gru);
                 ArrayList<Grupo> grpp = new ArrayList<>();
                 grpp.add(p);
                 request.setAttribute("grups", grpp);
                 request.setAttribute("idid", p.getId());
+                request.setAttribute("CRS", CRRS);
                 request.getRequestDispatcher("OfertaAcd.jsp").forward(request, response);
                 break;
+                
             case "CnfCar":
                 String car = (String) request.getParameter("carrera");
+                String ciclo = (String) request.getParameter("ciclo");
                 Carrera c = new Carrera();
                 gestor.MostrarCarreraC(c, car);
                 if (!c.getCodigo().isEmpty()) {
                     ArrayList<Curso> curss = new ArrayList<>();
-                    gestor.MostrarCursos(curss, car);
+                    gestor.MostrarCursos(curss, car, ciclo);
                     request.setAttribute("cursos", curss);
                 }
                 request.getRequestDispatcher("OfertaAcd.jsp").forward(request, response);
                 break;
+            case "CHGRP":
+                String id =(String)request.getParameter("idid");
+                Grupo gr = new Grupo((String) request.getParameter("codigo"),Integer.parseInt((String) request.getParameter("numero")),(String) request.getParameter("horario"),(String) request.getParameter("profesor"),(String) request.getParameter("curso"));
+                if(id.isEmpty())
+                    gestor.agregarGrupo(gr.getNumero(), gr.getHorario(), gr.getProfesor(), gr.getCurso());
+                else gestor.actualizar(gr);
+              //  request.getRequestDispatcher("OfertaAcd.jsp").forward(request, response);
+              //  break;
             case "GRPSCRS":
                 String crs = (String) request.getParameter("CRS");
                 ArrayList<Grupo> gprs = new ArrayList<>();
